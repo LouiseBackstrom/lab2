@@ -1,40 +1,38 @@
-    var answerUser = " "; 
+    var url = "https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=boolean";
     var i = 0;
-    var url = "https://opentdb.com/api.php?amount=5&category=21&difficulty=medium&type=boolean";
-    
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            var Questions = JSON.parse(this.responseText); 
+            var Questions = JSON.parse(this.responseText);
             
-        document.getElementById("true").addEventListener("click", function() {
-            if (document.getElementById("answer").style.visibility == "hidden")
-            document.getElementById("answer").style.visibility = "visible";
-            
-            document.getElementById("answer").innerHTML =         
-            Questions.results[i].correct_answer;
-            });
-            
-        document.getElementById("false").addEventListener("click", function() {
-            if (document.getElementById("answer").style.visibility == "hidden")
-            document.getElementById("answer").style.visibility = "visible";
-            
-            document.getElementById("answer").innerHTML =         
-            Questions.results[i].correct_answer;
-            });
-            
-        document.getElementById("next").addEventListener("click", function() {
-            document.getElementById("next").innerHTML = "Next Question";
+        document.getElementById("btn1").addEventListener("click", function() {
+            document.getElementById("btn1").innerHTML = "Next Question";
             
             document.getElementById("questions").innerHTML = Questions.results[i].question;
+            
+            document.getElementById("answer").innerHTML =         
+            Questions.results[i].correct_answer;
             i++;
+            
             document.getElementById("answer").style.visibility = "hidden";
+            });    
+            
+        document.getElementById("btn2").addEventListener("click", function() {
+            if (document.getElementById("answer").style.visibility == "hidden")
+            document.getElementById("answer").style.visibility = "visible";
+            });
+        
+        document.getElementById("btn3").addEventListener("click", function() {
+            if (document.getElementById("answer").style.visibility == "hidden")
+            document.getElementById("answer").style.visibility = "visible";
+            
             });
         };
     }
     
     var correctAnswer = JSON.stringify({
-        "correct_answer": "answerUser"
+        "correct_answer": " "
     });
     
     xmlhttp.open("GET", url, true);
